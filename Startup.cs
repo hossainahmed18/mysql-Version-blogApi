@@ -44,9 +44,9 @@ namespace blogApi
         {
             services.AddControllers();
             String connectionString = Configuration.GetConnectionString("DefaultConnection");
-          services.AddDbContextPool<MainContext>(
-      options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection")
-   ));
+            services.AddDbContextPool<MainContext>(
+                options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection")
+            ));
             services.AddScoped<IUserRepository, UserRepository>();
             
             services.AddScoped<IPostRepository, PostRepository>();

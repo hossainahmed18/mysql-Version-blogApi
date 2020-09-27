@@ -22,7 +22,7 @@ namespace blogApi.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        [Route("get")]
+        [Route("get/{role}")]
         public ActionResult<IEnumerable<Post>> Get(string role){
             var allPosts = _repo.Get(role);
             return allPosts;
@@ -30,7 +30,7 @@ namespace blogApi.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        [Route("singlepost")]
+        [Route("singlepost/{id}")]
         public ActionResult<Post> SinglePost(int id){
             var singlePost = _repo.singleGet(id);
             return singlePost;
@@ -45,7 +45,7 @@ namespace blogApi.Controllers
 
         [HttpPut]
         [Authorize]
-        [Route("singlepost")]
+        [Route("singlepost/{id}")]
         public async Task<ActionResult<Post>>UpdatePost(Post post,int id){
             await _repo.Update(post,id);
             return Ok(post);
@@ -53,7 +53,7 @@ namespace blogApi.Controllers
 
         [HttpDelete]
         [Authorize]
-        [Route("singlepost")]
+        [Route("singlepost/{id}")]
         public async Task<ActionResult<Post>>DeletePost(int id){
             await _repo.Delete(id);
             return Ok("deleted");

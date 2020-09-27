@@ -22,7 +22,7 @@ namespace blogApi.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        [Route("get")]
+        [Route("get/{id}")]
         public ActionResult<IEnumerable<Comment>> Get(int id){
             var allComments = _repo.Get(id);
             return allComments;
@@ -39,7 +39,7 @@ namespace blogApi.Controllers
 
         [HttpPut]
         [Authorize]
-        [Route("change")]
+        [Route("change/{id}")]
         public async Task<ActionResult<Comment>>UpdatePost(Comment comment,int id){
             await _repo.Update(comment,id);
             return Ok(comment);
@@ -47,7 +47,7 @@ namespace blogApi.Controllers
 
         [HttpDelete]
         [Authorize]
-        [Route("change")]
+        [Route("change/{id}")]
         public async Task<ActionResult<Comment>>DeletePost(int id){
             await _repo.Delete(id);
             return Ok("deleted");
